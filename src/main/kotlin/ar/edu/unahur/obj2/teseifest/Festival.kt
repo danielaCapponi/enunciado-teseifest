@@ -1,19 +1,27 @@
 package ar.edu.unahur.obj2.caralibro
 
-import kotlin.math.ceil
+import ar.edu.unahur.obj2.teseifest.*
 
-interface Escenario {
-    val lineUp: Map<Int,String>
-}
-
-object Rock: Escenario {
-    override val lineUp: Map<Int, String> = mapOf<Int,String>(1 to "Sumados", 2 to "Joya Nunca Taxi")
-}
 
 object Festival {
-    val escearios = listOf(Rock)
+    val escenarios= listOf(escenarioRock, escenarioCumbia, escenarioTrap);
 
-    fun lineUp(): List<String> [
-        TODO("Deberiamos sacar esto de algun lado...")
-    ]
+    fun lineUp(): List<Map<Int, String>> {
+        return escenarios.map { n -> n.lineUp }
+    }
 }
+
+
+object App {
+
+}
+
+class Perfil(participante: Participante, nivel: NivelDeAcceso) {
+    fun puedeAcceder(escenario: Escenario): Any {
+        return true
+    }
+
+}
+
+enum class NivelDeAcceso { FREE, FAN, REFAN, SUPERFAN }
+
